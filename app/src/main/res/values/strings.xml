@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Swapi Client</string>
+    <string name="searchHint">Search Star Wars</string>
 </resources>
