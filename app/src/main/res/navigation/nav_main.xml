@@ -38,7 +38,8 @@
             app:destination="@id/vehicleDetailFragment" />
         <argument
             android:name="id"
-            app:argType="string" />
+            app:argType="string"
+            android:defaultValue="1" />
     </fragment>
     <fragment
         android:id="@+id/filmDetailFragment"

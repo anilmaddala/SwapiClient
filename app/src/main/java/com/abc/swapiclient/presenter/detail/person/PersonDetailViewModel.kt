@@ -6,6 +6,7 @@ import androidx.lifecycle.*
 import androidx.navigation.NavDirections
 import com.abc.swapiclient.domain.models.Person
 import com.abc.swapiclient.domain.state.State
+import com.abc.swapiclient.presenter.util.SingleLiveEvent
 import com.abc.swapiclient.usecases.GetPersonUseCase
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -22,7 +23,7 @@ class PersonDetailViewModel @ViewModelInject constructor(private val getPersonUs
         private const val VEHICLES = "vehicles"
     }
 
-    private val _navigationAction = MutableLiveData<NavDirections>()
+    private val _navigationAction = SingleLiveEvent<NavDirections>()
     val navigationAction: LiveData<NavDirections>
         get() = _navigationAction
 
@@ -51,7 +52,7 @@ class PersonDetailViewModel @ViewModelInject constructor(private val getPersonUs
      * Sample URL: 'http://swapi.dev/api/planets/1/'
      */
     fun setNextNavigation() {
-        val url = "http://swapi.dev/api/films/6/"
+        val url = "http://swapi.dev/api/films/4/"
         val splits = url.split('/')
         val id = splits[splits.lastIndex - 1]
         val destination = splits[splits.lastIndex - 2]
