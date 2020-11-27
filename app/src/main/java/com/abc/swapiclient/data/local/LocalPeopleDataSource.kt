@@ -1,6 +1,6 @@
 package com.abc.swapiclient.data.local
 
-import com.abc.swapiclient.domain.*
+import com.abc.swapiclient.domain.models.*
 
 interface LocalPeopleDataSource {
 

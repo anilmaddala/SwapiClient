@@ -1,4 +1,4 @@
-package com.abc.swapiclient.domain
+package com.abc.swapiclient.domain.models
 
 data class Vehicle(
     val cargoCapacity: String? = null,

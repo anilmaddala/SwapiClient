@@ -1,4 +1,4 @@
-package com.abc.swapiclient.domain
+package com.abc.swapiclient.domain.models
 
 data class Starship(
     val cargoCapacity: String? = null,

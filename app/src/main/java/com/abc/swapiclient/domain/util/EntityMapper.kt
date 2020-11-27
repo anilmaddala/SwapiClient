@@ -1,4 +1,4 @@
-package com.abc.swapiclient.data.util
+package com.abc.swapiclient.domain.util
 
 /**
  * Mapper used to convert between Entity <-> Domain Model

@@ -2,13 +2,14 @@ package com.abc.swapiclient.data.network.mapper
 
 
 import com.abc.swapiclient.data.network.vo.People
-import com.abc.swapiclient.data.util.EntityMapper
+import com.abc.swapiclient.domain.util.EntityMapper
+import com.abc.swapiclient.domain.models.Person
 import javax.inject.Inject
 
 class PeopleMapper
-@Inject constructor() : EntityMapper<People, com.abc.swapiclient.domain.Person> {
-    override fun mapFromEntity(entity: People): com.abc.swapiclient.domain.Person {
-        return com.abc.swapiclient.domain.Person(
+@Inject constructor() : EntityMapper<People, Person> {
+    override fun mapFromEntity(entity: People): Person {
+        return Person(
             birthYear = entity.birthYear,
             created = entity.created,
             edited = entity.edited,
@@ -30,7 +31,7 @@ class PeopleMapper
         )
     }
 
-    override fun mapToEntity(domainModel: com.abc.swapiclient.domain.Person): People {
+    override fun mapToEntity(domainModel: Person): People {
         return People(
             birthYear = domainModel.birthYear,
             created = domainModel.created,

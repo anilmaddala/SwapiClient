@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_main"
-    app:startDestination="@id/searchFragment">
+    app:startDestination="@id/personDetailFragment">
 
     <fragment
         android:id="@+id/detailFragment"
@@ -27,4 +27,8 @@
             android:id="@+id/action_searchFragment_to_detailFragment"
             app:destination="@id/detailFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/personDetailFragment"
+        android:name="com.abc.swapiclient.presenter.detail.person.PersonDetailFragment"
+        android:label="PersonDetailFragment" />
 </navigation>

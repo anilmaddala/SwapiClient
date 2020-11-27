@@ -1,4 +1,4 @@
-package com.abc.swapiclient.domain
+package com.abc.swapiclient.domain.models
 
 data class Planet(
     val climate: String? = null,
