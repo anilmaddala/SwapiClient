@@ -1,7 +1,6 @@
 package com.abc.swapiclient.data.network
 
 import com.abc.swapiclient.data.network.vo.*
-import com.abc.swapiclient.domain.models.Film
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -9,7 +8,7 @@ import retrofit2.http.Query
 interface NetworkDataSource {
 
     @GET("people")
-    suspend fun searchPeople(@Query("search") searchQuery: String)
+    suspend fun searchPeople(@Query("search") searchQuery: String): PeopleSearchResponse
 
     @GET("films/{id}")
     suspend fun getFilm(@Path("id") id: String): Films

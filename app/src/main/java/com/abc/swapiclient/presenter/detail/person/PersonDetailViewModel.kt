@@ -39,7 +39,7 @@ class PersonDetailViewModel @ViewModelInject constructor(private val getPersonUs
      * Load StarWars Character
      */
     fun loadPerson(id: String) {
-        viewModelScope.launch {
+        viewModelScope.launch() {
             getPersonUseCase.invoke(id).collect {
                 _personResponse.value = it
             }

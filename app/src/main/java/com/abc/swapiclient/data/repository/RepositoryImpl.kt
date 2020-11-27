@@ -1,6 +1,5 @@
 package com.abc.swapiclient.data.repository
 
-import android.util.Log
 import com.abc.swapiclient.data.network.NetworkDataSource
 import com.abc.swapiclient.data.network.mapper.*
 import com.abc.swapiclient.domain.Repository
@@ -19,10 +18,19 @@ class RepositoryImpl
     private val planetsMapper: PlanetsMapper,
     private val speciesMapper: SpeciesMapper,
     private val starshipsMapper: StarshipsMapper,
-    private val vehiclesMapper: VehiclesMapper
-):Repository {
-    override suspend fun searchPeople(searchQuery: String) {
-        TODO("Not yet implemented")
+    private val vehiclesMapper: VehiclesMapper,
+    private val searchResponseMapper: SearchResponseMapper
+) : Repository {
+    override suspend fun searchPeople(searchQuery: String): Flow<State<List<Person>>> {
+        return flow {
+            try {
+                emit(State.Loading)
+                val data = networkDataSource.searchPeople(searchQuery)
+                emit(State.Success(searchResponseMapper.mapFromEntity(data)))
+            } catch (e: Exception) {
+                emit(State.Error(e))
+            }
+        }
     }
 
     override suspend fun getFilm(id: String): Flow<State<Film>> {
