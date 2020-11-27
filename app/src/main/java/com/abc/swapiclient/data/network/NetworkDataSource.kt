@@ -11,7 +11,7 @@ interface NetworkDataSource {
     suspend fun getFilm(name: String)
 
     @GET("people/{id}")
-    fun getPeople(@Path("id") id: String): People
+    suspend fun getPeople(@Path("id") id: String): People
 
     suspend fun getPlanet(name: String)
 

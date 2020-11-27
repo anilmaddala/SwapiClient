@@ -2,8 +2,8 @@ package com.abc.swapiclient.data.network.mapper
 
 
 import com.abc.swapiclient.data.network.vo.People
-import com.abc.swapiclient.domain.util.EntityMapper
 import com.abc.swapiclient.domain.models.Person
+import com.abc.swapiclient.domain.util.EntityMapper
 import javax.inject.Inject
 
 class PeopleMapper
@@ -26,9 +26,17 @@ class PeopleMapper
             starships = entity.starships,
             vehicles = entity.vehicles,
             url = entity.url,
-            imageURL = "https://starwars-visualguide.com/assets/img/characters/" + (entity.url
-                ?: "").split("/").last(),
+            imageURL = getImageURL(entity.url ?: ""),
         )
+    }
+
+    private fun getImageURL(url: String): String {
+        if (url.isEmpty()) {
+            return ""
+        }
+        val splitList = url.split("/")
+        val id = splitList[splitList.lastIndex - 1]
+        return "https://starwars-visualguide.com/assets/img/characters/$id.jpg"
     }
 
     override fun mapToEntity(domainModel: Person): People {
@@ -48,7 +56,8 @@ class PeopleMapper
             species = domainModel.species,
             starships = domainModel.starships,
             url = domainModel.url,
-            vehicles = domainModel.vehicles)
+            vehicles = domainModel.vehicles
+        )
     }
 
 }

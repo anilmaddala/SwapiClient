@@ -24,12 +24,11 @@ class RepositoryImpl
         TODO("Not yet implemented")
     }
 
-    override suspend fun getPerson(name: String): Flow<State<Person>> {
+    override suspend fun getPerson(id: String): Flow<State<Person>> {
         return flow {
             try {
-                Log.v("MVS1", name)
-                val data = networkDataSource.getPeople(name)
-                Log.v("MVS1", data.toString())
+                emit(State.Loading)
+                val data = networkDataSource.getPeople(id)
                 emit(State.Success(peopleMapper.mapFromEntity(data)))
             } catch (e: Exception) {
                 emit(State.Error(e))
