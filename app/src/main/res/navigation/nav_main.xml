@@ -6,29 +6,173 @@
     app:startDestination="@id/personDetailFragment">
 
     <fragment
-        android:id="@+id/detailFragment"
-        android:name="com.abc.swapiclient.presenter.detail.DetailFragment"
-        android:label="detail_fragment"
-        tools:layout="@layout/detail_fragment" >
-        <action
-            android:id="@+id/action_detailFragment_self"
-            app:destination="@id/detailFragment" />
-        <argument
-            android:name="count"
-            app:argType="integer"
-            android:defaultValue="0" />
-    </fragment>
-    <fragment
         android:id="@+id/searchFragment"
         android:name="com.abc.swapiclient.presenter.search.SearchFragment"
         android:label="search_fragment"
-        tools:layout="@layout/search_fragment" >
+        tools:layout="@layout/search_fragment">
         <action
-            android:id="@+id/action_searchFragment_to_detailFragment"
-            app:destination="@id/detailFragment" />
+            android:id="@+id/action_searchFragment_to_personDetailFragment"
+            app:destination="@id/personDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/personDetailFragment"
         android:name="com.abc.swapiclient.presenter.detail.person.PersonDetailFragment"
-        android:label="PersonDetailFragment" />
+        android:label="PersonDetailFragment">
+        <action
+            android:id="@+id/action_personDetailFragment_self"
+            app:destination="@id/personDetailFragment" />
+        <action
+            android:id="@+id/action_personDetailFragment_to_filmDetailFragment"
+            app:destination="@id/filmDetailFragment" />
+        <action
+            android:id="@+id/action_personDetailFragment_to_planetDetailFragment"
+            app:destination="@id/planetDetailFragment" />
+        <action
+            android:id="@+id/action_personDetailFragment_to_speciesDetailFragment"
+            app:destination="@id/speciesDetailFragment" />
+        <action
+            android:id="@+id/action_personDetailFragment_to_starshipDetailFragment"
+            app:destination="@id/starshipDetailFragment" />
+        <action
+            android:id="@+id/action_personDetailFragment_to_vehicleDetailFragment"
+            app:destination="@id/vehicleDetailFragment" />
+        <argument
+            android:name="id"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/filmDetailFragment"
+        android:name="com.abc.swapiclient.presenter.detail.film.FilmDetailFragment"
+        android:label="film_detail_fragment"
+        tools:layout="@layout/film_detail_fragment">
+        <action
+            android:id="@+id/action_filmDetailFragment_self"
+            app:destination="@id/filmDetailFragment" />
+        <action
+            android:id="@+id/action_filmDetailFragment_to_personDetailFragment"
+            app:destination="@id/personDetailFragment" />
+        <action
+            android:id="@+id/action_filmDetailFragment_to_planeteDetailFragment"
+            app:destination="@id/planetDetailFragment" />
+        <action
+            android:id="@+id/action_filmDetailFragment_to_speciesDetailFragment"
+            app:destination="@id/speciesDetailFragment" />
+        <action
+            android:id="@+id/action_filmDetailFragment_to_starshipDetailFragment"
+            app:destination="@id/starshipDetailFragment" />
+        <action
+            android:id="@+id/action_filmDetailFragment_to_vehicleDetailFragment"
+            app:destination="@id/vehicleDetailFragment" />
+        <argument
+            android:name="id"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/planetDetailFragment"
+        android:name="com.abc.swapiclient.presenter.detail.planet.PlanetDetailFragment"
+        android:label="planet_detail_fragment"
+        tools:layout="@layout/planet_detail_fragment">
+        <action
+            android:id="@+id/action_planetDetailFragment_self"
+            app:destination="@id/planetDetailFragment" />
+        <argument
+            android:name="id"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_planetDetailFragment_to_filmDetailFragment"
+            app:destination="@id/filmDetailFragment" />
+        <action
+            android:id="@+id/action_planetDetailFragment_to_starshipDetailFragment"
+            app:destination="@id/starshipDetailFragment" />
+        <action
+            android:id="@+id/action_planetDetailFragment_to_speciesDetailFragment"
+            app:destination="@id/speciesDetailFragment" />
+        <action
+            android:id="@+id/action_planetDetailFragment_to_vehicleDetailFragment"
+            app:destination="@id/vehicleDetailFragment" />
+        <action
+            android:id="@+id/action_planetDetailFragment_to_personDetailFragment"
+            app:destination="@id/personDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/speciesDetailFragment"
+        android:name="com.abc.swapiclient.presenter.detail.species.SpeciesDetailFragment"
+        android:label="species_detail_fragment"
+        tools:layout="@layout/species_detail_fragment">
+        <action
+            android:id="@+id/action_speciesDetailFragment_self"
+            app:destination="@id/speciesDetailFragment" />
+        <action
+            android:id="@+id/action_speciesDetailFragment_to_vehicleDetailFragment"
+            app:destination="@id/vehicleDetailFragment" />
+        <action
+            android:id="@+id/action_speciesDetailFragment_to_starshipDetailFragment"
+            app:destination="@id/starshipDetailFragment" />
+        <action
+            android:id="@+id/action_speciesDetailFragment_to_filmDetailFragment"
+            app:destination="@id/filmDetailFragment" />
+        <action
+            android:id="@+id/action_speciesDetailFragment_to_planetDetailFragment"
+            app:destination="@id/planetDetailFragment" />
+        <action
+            android:id="@+id/action_speciesDetailFragment_to_personDetailFragment"
+            app:destination="@id/personDetailFragment" />
+        <argument
+            android:name="id"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/starshipDetailFragment"
+        android:name="com.abc.swapiclient.presenter.detail.starship.StarshipDetailFragment"
+        android:label="starship_detail_fragment"
+        tools:layout="@layout/starship_detail_fragment">
+        <action
+            android:id="@+id/action_starshipDetailFragment_self"
+            app:destination="@id/starshipDetailFragment" />
+        <action
+            android:id="@+id/action_starshipDetailFragment_to_personDetailFragment"
+            app:destination="@id/personDetailFragment" />
+        <action
+            android:id="@+id/action_starshipDetailFragment_to_filmDetailFragment"
+            app:destination="@id/filmDetailFragment" />
+        <action
+            android:id="@+id/action_starshipDetailFragment_to_speciesDetailFragment"
+            app:destination="@id/speciesDetailFragment" />
+        <action
+            android:id="@+id/action_starshipDetailFragment_to_planetDetailFragment"
+            app:destination="@id/planetDetailFragment" />
+        <argument
+            android:name="id"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_starshipDetailFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/vehicleDetailFragment"
+        android:name="com.abc.swapiclient.presenter.detail.vehicle.VehicleDetailFragment"
+        android:label="vehicle_detail_fragment"
+        tools:layout="@layout/vehicle_detail_fragment">
+        <action
+            android:id="@+id/action_vehicleDetailFragment_self"
+            app:destination="@id/vehicleDetailFragment" />
+        <action
+            android:id="@+id/action_vehicleDetailFragment_to_personDetailFragment"
+            app:destination="@id/personDetailFragment" />
+        <action
+            android:id="@+id/action_vehicleDetailFragment_to_starshipDetailFragment"
+            app:destination="@id/starshipDetailFragment" />
+        <action
+            android:id="@+id/action_vehicleDetailFragment_to_speciesDetailFragment"
+            app:destination="@id/speciesDetailFragment" />
+        <action
+            android:id="@+id/action_vehicleDetailFragment_to_filmDetailFragment"
+            app:destination="@id/filmDetailFragment" />
+        <action
+            android:id="@+id/action_vehicleDetailFragment_to_planetDetailFragment"
+            app:destination="@id/planetDetailFragment" />
+        <argument
+            android:name="id"
+            app:argType="string" />
+    </fragment>
 </navigation>

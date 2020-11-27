@@ -2,7 +2,7 @@ package com.abc.swapiclient.data.local
 
 import com.abc.swapiclient.domain.models.*
 
-interface LocalPeopleDataSource {
+interface LocalDataSource {
 
     suspend fun getFilm(name: String)
 

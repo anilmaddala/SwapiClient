@@ -1,22 +1,21 @@
 package com.abc.swapiclient.domain
 
-import com.abc.swapiclient.domain.models.Person
+import com.abc.swapiclient.domain.models.*
 import com.abc.swapiclient.domain.state.State
 import kotlinx.coroutines.flow.Flow
-
 
 interface Repository {
     suspend fun searchPeople(searchQuery: String)
 
-    suspend fun getFilm(name: String)
+    suspend fun getFilm(id: String): Flow<State<Film>>
 
-    suspend fun getPerson(name: String) : Flow<State<Person>>
+    suspend fun getPerson(id: String): Flow<State<Person>>
 
-    suspend fun getPlanet(name: String)
+    suspend fun getPlanet(id: String): Flow<State<Planet>>
 
-    suspend fun getSpecies(name: String)
+    suspend fun getSpecies(id: String): Flow<State<Species>>
 
-    suspend fun getStarship(name: String)
+    suspend fun getStarship(id: String): Flow<State<Starship>>
 
-    suspend fun getVehicle(name: String)
+    suspend fun getVehicle(id: String): Flow<State<Vehicle>>
 }

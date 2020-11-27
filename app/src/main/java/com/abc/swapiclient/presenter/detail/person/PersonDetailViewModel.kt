@@ -1,48 +1,103 @@
 package com.abc.swapiclient.presenter.detail.person
 
-import android.util.Log
+import android.view.View
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
+import androidx.navigation.NavDirections
 import com.abc.swapiclient.domain.models.Person
 import com.abc.swapiclient.domain.state.State
 import com.abc.swapiclient.usecases.GetPersonUseCase
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-class PersonDetailViewModel @ViewModelInject constructor(getPersonUseCase: GetPersonUseCase) : ViewModel() {
+class PersonDetailViewModel @ViewModelInject constructor(private val getPersonUseCase: GetPersonUseCase) :
+    ViewModel() {
 
-    val id = "1"
+    companion object {
+        private const val FILMS = "films"
+        private const val PEOPLE = "people"
+        private const val PLANETS = "planets"
+        private const val SPECIES = "species"
+        private const val STARSHIPS = "starships"
+        private const val VEHICLES = "vehicles"
+    }
 
-    private val _response = MutableLiveData<State<Person>>()
-//        .map {
-//            when(it) {
-//                State.Loading -> {
-//                    Log.v("MVS", "Loading")
-//                }
-//                is State.Success -> {
-//                    Log.v("MVS", "Success")
-//                }
-//                is State.Error -> {
-//                    Log.v("MVS", "Error")
-//                }
-//            }
-//        }
-//    val response: LiveData<List<EmployeeListItem>>
-//        get() = _response.map { if (it is State.Success) it.data else emptyList() }
+    private val _navigationAction = MutableLiveData<NavDirections>()
+    val navigationAction: LiveData<NavDirections>
+        get() = _navigationAction
 
-    private var _person = MutableLiveData<Person>()
+    private val _personResponse = MutableLiveData<State<Person>>()
+
+    val loading: LiveData<Boolean>
+        get() = _personResponse.map { it is State.Loading }
+
     val person: LiveData<Person>
-        get() = _person
+        get() = _personResponse.map { if (it is State.Success) it.data else Person() }
 
-    init {
-        viewModelScope.launch(Dispatchers.IO) {
+    /**
+     * Load StarWars Character
+     */
+    fun loadPerson(id: String) {
+        viewModelScope.launch {
             getPersonUseCase.invoke(id).collect {
-                Log.v("MVS", it.toString())
-                _response.postValue(it)
+                _personResponse.value = it
             }
         }
     }
 
-
+    // TODO: ViewModel shouldn't have any view related components. Move to fragment or activity
+    /**
+     * Process URL and navigate to appropriate fragment destination
+     * Sample URL: 'http://swapi.dev/api/planets/1/'
+     */
+    fun setNextNavigation() {
+        val url = "http://swapi.dev/api/films/6/"
+        val splits = url.split('/')
+        val id = splits[splits.lastIndex - 1]
+        val destination = splits[splits.lastIndex - 2]
+        when (destination) {
+            FILMS -> {
+                _navigationAction.postValue(
+                    PersonDetailFragmentDirections.actionPersonDetailFragmentToFilmDetailFragment(
+                        id
+                    )
+                )
+            }
+            PEOPLE -> {
+                _navigationAction.postValue(
+                    PersonDetailFragmentDirections.actionPersonDetailFragmentSelf(
+                        id
+                    )
+                )
+            }
+            PLANETS -> {
+                _navigationAction.postValue(
+                    PersonDetailFragmentDirections.actionPersonDetailFragmentToPlanetDetailFragment(
+                        id
+                    )
+                )
+            }
+            SPECIES -> {
+                _navigationAction.postValue(
+                    PersonDetailFragmentDirections.actionPersonDetailFragmentToSpeciesDetailFragment(
+                        id
+                    )
+                )
+            }
+            STARSHIPS -> {
+                _navigationAction.postValue(
+                    PersonDetailFragmentDirections.actionPersonDetailFragmentToStarshipDetailFragment(
+                        id
+                    )
+                )
+            }
+            VEHICLES -> {
+                _navigationAction.postValue(
+                    PersonDetailFragmentDirections.actionPersonDetailFragmentToVehicleDetailFragment(
+                        id
+                    )
+                )
+            }
+        }
+    }
 }

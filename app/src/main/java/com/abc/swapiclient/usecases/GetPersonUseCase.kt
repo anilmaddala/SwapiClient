@@ -1,6 +1,5 @@
 package com.abc.swapiclient.usecases
 
-import androidx.lifecycle.LiveData
 import com.abc.swapiclient.data.repository.RepositoryImpl
 import com.abc.swapiclient.domain.models.Person
 import com.abc.swapiclient.domain.state.State

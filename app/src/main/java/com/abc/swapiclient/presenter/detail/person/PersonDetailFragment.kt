@@ -7,6 +7,9 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.abc.swapiclient.R
 import com.abc.swapiclient.databinding.PersonDetailFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -18,15 +21,24 @@ class PersonDetailFragment : Fragment() {
 
     private lateinit var binding: PersonDetailFragmentBinding
 
+    private val args: PersonDetailFragmentArgs by navArgs()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         binding =
             DataBindingUtil.inflate(inflater, R.layout.person_detail_fragment, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
+
+        viewModel.navigationAction.observe(viewLifecycleOwner, {
+            findNavController().navigate(it)
+        })
+
+        viewModel.loadPerson("3")
+//        viewModel.loadPerson(args.id)
+
         return binding.root
     }
 }

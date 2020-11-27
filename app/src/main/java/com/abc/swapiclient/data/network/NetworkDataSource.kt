@@ -1,25 +1,31 @@
 package com.abc.swapiclient.data.network
 
-import com.abc.swapiclient.data.network.vo.People
+import com.abc.swapiclient.data.network.vo.*
 import com.abc.swapiclient.domain.models.Film
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface NetworkDataSource {
-    suspend fun searchPeople(searchQuery: String)
 
-    suspend fun getFilm(name: String)
+    @GET("people")
+    suspend fun searchPeople(@Query("search") searchQuery: String)
+
+    @GET("films/{id}")
+    suspend fun getFilm(@Path("id") id: String): Films
 
     @GET("people/{id}")
     suspend fun getPeople(@Path("id") id: String): People
 
-    suspend fun getPlanet(name: String)
+    @GET("planets/{id}")
+    suspend fun getPlanet(name: String): Planets
 
-    suspend fun getSpecies(name: String)
+    @GET("species/{id}")
+    suspend fun getSpecies(name: String): Species
 
-    suspend fun getStarship(name: String)
+    @GET("starships/{id}")
+    suspend fun getStarship(name: String): Starships
 
-    suspend fun getVehicle(name: String)
-
-    suspend fun addFilm(film: Film)
+    @GET("vehicles/{id}")
+    suspend fun getVehicle(name: String): Vehicles
 }
