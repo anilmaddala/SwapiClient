@@ -27,7 +27,7 @@ class VehiclesMapper @Inject constructor() : EntityMapper<Vehicles, Vehicle> {
     }
 
     /**
-     * Mapper for Planet Image URL
+     * Mapper for Vehicle Image URL
      * Sample URL: https://starwars-visualguide.com/assets/img/vehicles/7.jpg
      */
     private fun getImageURL(url: String): String {

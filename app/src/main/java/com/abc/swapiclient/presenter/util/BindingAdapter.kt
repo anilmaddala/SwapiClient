@@ -20,8 +20,9 @@ fun View.setVisible(show: Boolean) {
     visibility = if (show) VISIBLE else INVISIBLE
 }
 
-@BindingAdapter("searchResults")
-fun searchResults(view: RecyclerView, personList: List<Person>?) {
+@BindingAdapter("searchResults", "onSearchResultClick")
+fun searchResults(view: RecyclerView, personList: List<Person>?, onSearchResultClick: (String) -> Unit) {
+    view.adapter = SearchResultAdapter(onSearchResultClick)
     val adapter = view.adapter as SearchResultAdapter
     if (personList.isNullOrEmpty()) {
         view.visibility = View.GONE

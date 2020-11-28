@@ -26,7 +26,7 @@ class SpeciesMapper @Inject constructor() :
     }
 
     /**
-     * Mapper for Planet Image URL
+     * Mapper for Species Image URL
      * Sample URL: https://starwars-visualguide.com/assets/img/species/1.jpg
      */
     private fun getImageURL(url: String): String {

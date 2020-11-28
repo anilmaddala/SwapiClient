@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.abc.swapiclient.databinding.SearchResultItemBinding
 import com.abc.swapiclient.domain.models.Person
 
-class SearchResultAdapter : RecyclerView.Adapter<SearchResultViewHolder>() {
+class SearchResultAdapter(val onSearchResultClick: (String) -> Unit) : RecyclerView.Adapter<SearchResultViewHolder>() {
 
     private val diffCallback = object : DiffUtil.ItemCallback<Person>(){
         override fun areItemsTheSame(oldItem: Person, newItem: Person): Boolean {
@@ -27,6 +27,9 @@ class SearchResultAdapter : RecyclerView.Adapter<SearchResultViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: SearchResultViewHolder, position: Int) {
+        holder.binding.root.setOnClickListener {
+            onSearchResultClick(differ.currentList[position].id.toString())
+        }
         holder.bind(differ.currentList[position])
     }
 

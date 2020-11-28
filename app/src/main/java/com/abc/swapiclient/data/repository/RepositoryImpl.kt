@@ -21,11 +21,11 @@ class RepositoryImpl
     private val vehiclesMapper: VehiclesMapper,
     private val searchResponseMapper: SearchResponseMapper
 ) : Repository {
-    override suspend fun searchPeople(searchQuery: String): Flow<State<List<Person>>> {
+    override suspend fun searchPeople(searchQuery: String, pageIndex: Int): Flow<State<PersonSearchResult>> {
         return flow {
             try {
                 emit(State.Loading)
-                val data = networkDataSource.searchPeople(searchQuery)
+                val data = networkDataSource.searchPeople(searchQuery, pageIndex)
                 emit(State.Success(searchResponseMapper.mapFromEntity(data)))
             } catch (e: Exception) {
                 emit(State.Error(e))

@@ -5,7 +5,7 @@ import com.abc.swapiclient.domain.state.State
 import kotlinx.coroutines.flow.Flow
 
 interface Repository {
-    suspend fun searchPeople(searchQuery: String): Flow<State<List<Person>>>
+    suspend fun searchPeople(searchQuery: String, pageIndex: Int): Flow<State<PersonSearchResult>>
 
     suspend fun getFilm(id: String): Flow<State<Film>>
 

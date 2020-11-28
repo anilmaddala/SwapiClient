@@ -29,7 +29,7 @@ class StarshipsMapper @Inject constructor() : EntityMapper<Starships, Starship> 
     }
 
     /**
-     * Mapper for Planet Image URL
+     * Mapper for Starship Image URL
      * Sample URL: https://starwars-visualguide.com/assets/img/starships/9.jpg
      */
     private fun getImageURL(url: String): String {

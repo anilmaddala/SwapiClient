@@ -27,11 +27,24 @@ class PeopleMapper
             vehicles = entity.vehicles,
             url = entity.url,
             imageURL = getImageURL(entity.url ?: ""),
+            id = getId(entity.url ?: "")
         )
     }
 
     /**
-     * Mapper for Planet Image URL
+     * Mapper for Person Id
+     * Sample URL: https://starwars-visualguide.com/assets/img/characters/2.jpg
+     */
+    private fun getId(url: String): Int {
+        if (url.isEmpty()) {
+            return 0
+        }
+        val splitList = url.split("/")
+        return Integer.valueOf(splitList[splitList.lastIndex - 1])
+    }
+
+    /**
+     * Mapper for People Image URL
      * Sample URL: https://starwars-visualguide.com/assets/img/characters/2.jpg
      */
     private fun getImageURL(url: String): String {
