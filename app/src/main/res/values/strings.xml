@@ -1,7 +1,11 @@
 <resources>
-    <string name="app_name">Swapi Client</string>
+    <string name="app_name">Star Wars Client</string>
     <string name="searchHint">Search Star Wars</string>
     <string name="name">Name:</string>
     <string name="population">Population:</string>
     <string name="gravity">Gravity:</string>
+    <string name="height">Height:</string>
+    <string name="mass">Mass:</string>
+    <string name="director">Director:</string>
+    <string name="producer">Producer:</string>
 </resources>

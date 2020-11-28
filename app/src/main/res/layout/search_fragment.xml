@@ -13,6 +13,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/black"
         tools:context=".presenter.search.SearchFragment">
 
         <SearchView
@@ -20,10 +21,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:iconifiedByDefault="false"
+            android:onQueryTextSubmit="@{viewModel::onSearchQuerySubmitted}"
             android:queryHint="@string/searchHint"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:onQueryTextSubmit="@{viewModel::onSearchQuerySubmitted}"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -33,14 +34,15 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/search_view" >
+            app:layout_constraintTop_toBottomOf="@+id/search_view">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/search_results_list"
+                searchResults="@{viewModel.peopleList}"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

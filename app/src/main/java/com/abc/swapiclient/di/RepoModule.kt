@@ -11,5 +11,5 @@ import dagger.hilt.android.components.ApplicationComponent
 @Module
 interface RepoModule {
     @Binds
-    fun getEmployeeRepository(repository: RepositoryImpl): Repository
+    fun getRepository(repository: RepositoryImpl): Repository
 }

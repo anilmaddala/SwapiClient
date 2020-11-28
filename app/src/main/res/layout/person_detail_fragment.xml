@@ -17,6 +17,8 @@
         tools:context=".presenter.detail.person.PersonDetailFragment">
 
         <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestedScrollView"
+            visibleOrGone="@{safeUnbox(!viewModel.loading)}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fillViewport="true">
@@ -64,7 +66,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:fontFamily="@font/starjedi"
-                    android:text="Height:"
+                    android:text="@string/height"
                     android:textSize="20sp"
                     app:layout_constraintStart_toStartOf="@+id/textView"
                     app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -75,7 +77,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:fontFamily="@font/starjedi"
-                    android:text="Mass:"
+                    android:text="@string/mass"
                     android:textSize="20sp"
                     app:layout_constraintStart_toStartOf="@+id/textView"
                     app:layout_constraintTop_toBottomOf="@+id/textView4" />
@@ -107,16 +109,29 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_marginTop="20dp"
-                    app:listDataHeader="@{viewModel.listDataHeader}"
-                    app:listDataChild="@{viewModel.filmsListDataChild}"
-                    app:onURLClick="@{viewModel.onURLClick()}"
+                    android:groupIndicator="@null"
                     android:nestedScrollingEnabled="false"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/textView7" />
+                    app:layout_constraintTop_toBottomOf="@id/textView7"
+                    app:listDataChild="@{viewModel.filmsListDataChild}"
+                    app:listDataHeader="@{viewModel.listDataHeader}"
+                    app:onURLClick="@{viewModel.onURLClick()}" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            visibleOrGone="@{safeUnbox(viewModel.loading)}"
+            android:layout_height="wrap_content"
+            android:indeterminateDrawable="@drawable/progress"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/nestedScrollView"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

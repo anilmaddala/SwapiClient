@@ -8,7 +8,10 @@ import retrofit2.http.Query
 interface NetworkDataSource {
 
     @GET("people")
-    suspend fun searchPeople(@Query("search") searchQuery: String): PeopleSearchResponse
+    suspend fun searchPeople(
+        @Query("search") searchQuery: String,
+        @Query("page") pageNumber: Int = 1
+    ): PeopleSearchResponse
 
     @GET("films/{id}")
     suspend fun getFilm(@Path("id") id: String): Films

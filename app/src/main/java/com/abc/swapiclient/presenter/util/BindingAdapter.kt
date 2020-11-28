@@ -1,10 +1,35 @@
 package com.abc.swapiclient.presenter.util
 
+import android.view.View
+import android.view.View.*
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
+import androidx.recyclerview.widget.RecyclerView
 import com.abc.swapiclient.R
+import com.abc.swapiclient.domain.models.Person
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+
+@BindingAdapter("visibleOrGone")
+fun View.setVisibleOrGone(show: Boolean) {
+    visibility = if (show) VISIBLE else GONE
+}
+
+@BindingAdapter("visible")
+fun View.setVisible(show: Boolean) {
+    visibility = if (show) VISIBLE else INVISIBLE
+}
+
+@BindingAdapter("searchResults")
+fun searchResults(view: RecyclerView, personList: List<Person>?) {
+    val adapter = view.adapter as SearchResultAdapter
+    if (personList.isNullOrEmpty()) {
+        view.visibility = View.GONE
+    } else {
+        view.visibility = View.VISIBLE
+        adapter.submit(personList)
+    }
+}
 
 /**
  *  Binding adapter for expandable list of URLs

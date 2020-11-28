@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseExpandableListAdapter
+import android.widget.ImageView
 import android.widget.TextView
 import com.abc.swapiclient.R
 
@@ -79,6 +80,13 @@ class ExpandableListAdapter internal constructor(
         }
         val listTitleTextView = convertView!!.findViewById<TextView>(R.id.listTitle)
         listTitleTextView.text = listTitle
+
+        val indicator = convertView!!.findViewById<ImageView>(R.id.indicator)
+        if (isExpanded) {
+            indicator.setImageResource(R.drawable.up_arrow);
+        } else {
+            indicator.setImageResource(R.drawable.down_arrow);
+        }
         return convertView
     }
 

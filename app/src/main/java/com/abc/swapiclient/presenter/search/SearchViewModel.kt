@@ -2,17 +2,15 @@ package com.abc.swapiclient.presenter.search
 
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
-import androidx.navigation.NavDirections
 import com.abc.swapiclient.domain.models.Person
 import com.abc.swapiclient.domain.state.State
-import com.abc.swapiclient.presenter.util.SingleLiveEvent
-import com.abc.swapiclient.usecases.GetPersonUseCase
 import com.abc.swapiclient.usecases.SearchPeopleUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-class SearchViewModel @ViewModelInject constructor(private val searchPeopleUseCase: SearchPeopleUseCase) : ViewModel() {
+class SearchViewModel @ViewModelInject constructor(private val searchPeopleUseCase: SearchPeopleUseCase) :
+    ViewModel() {
 
     var mediator = MediatorLiveData<Void>()
 
@@ -36,7 +34,7 @@ class SearchViewModel @ViewModelInject constructor(private val searchPeopleUseCa
     private fun searchPeople(query: String) {
         viewModelScope.launch(Dispatchers.IO) {
             searchPeopleUseCase.invoke(query).collect {
-                _personListResponse.value = it
+                _personListResponse.postValue(it)
             }
         }
     }

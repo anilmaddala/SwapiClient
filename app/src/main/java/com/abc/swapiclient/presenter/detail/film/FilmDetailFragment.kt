@@ -32,11 +32,11 @@ class FilmDetailFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
 
-//        viewModel.loadFilm(args.id)
-//
-//        viewModel.navigationAction.observe(viewLifecycleOwner, {
-//            findNavController().navigate(it)
-//        })
+        viewModel.loadFilm(args.id)
+
+        viewModel.navigationAction.observe(viewLifecycleOwner, {
+            findNavController().navigate(it)
+        })
         return binding.root
     }
 }

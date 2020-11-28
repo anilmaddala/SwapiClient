@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.abc.swapiclient.R
 import com.abc.swapiclient.databinding.SearchFragmentBinding
+import com.abc.swapiclient.presenter.util.SearchResultAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -23,6 +24,7 @@ class SearchFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.search_fragment, container, false)
+        binding.searchResultsList.adapter = SearchResultAdapter()
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
         return binding.root
