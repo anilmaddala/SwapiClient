@@ -34,7 +34,7 @@ class PersonDetailViewModel @ViewModelInject constructor(private val getPersonUs
     val person: LiveData<Person>
         get() = _personResponse.map { if (it is State.Success) it.data else Person() }
 
-    val listDataHeader: LiveData<List<String>>
+    val filmsListDataHeader: LiveData<List<String>>
         get() {
             return _personResponse.map {
                 if (it is State.Success) {
@@ -91,7 +91,7 @@ class PersonDetailViewModel @ViewModelInject constructor(private val getPersonUs
      * Process URL and navigate to appropriate fragment destination
      * Sample URL: 'http://swapi.dev/api/planets/1/'
      */
-    fun setNextNavigation(url: String) {
+    private fun setNextNavigation(url: String) {
         val splits = url.split('/')
         val id = splits[splits.lastIndex - 1]
         when (splits[splits.lastIndex - 2]) {

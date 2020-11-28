@@ -18,7 +18,7 @@ class ExpandableListAdapter internal constructor(
     val onURLClick: (String) -> Unit
 ) : BaseExpandableListAdapter() {
 
-    var dataList = data
+    private var dataList = data
 
     override fun getChild(listPosition: Int, expandedListPosition: Int): Any {
         return dataList[titleList[listPosition]]!![expandedListPosition]

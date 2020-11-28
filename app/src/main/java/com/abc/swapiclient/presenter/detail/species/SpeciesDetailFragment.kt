@@ -6,27 +6,37 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.abc.swapiclient.R
+import com.abc.swapiclient.databinding.SpeciesDetailFragmentBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SpeciesDetailFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = SpeciesDetailFragment()
-    }
+    private val viewModel: SpeciesDetailViewModel by viewModels()
 
-    private lateinit var viewModel: SpeciesDetailViewModel
+    private lateinit var binding: SpeciesDetailFragmentBinding
+
+    private val args: SpeciesDetailFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.species_detail_fragment, container, false)
-    }
+        binding =
+            DataBindingUtil.inflate(inflater, R.layout.species_detail_fragment, container, false)
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.viewModel = viewModel
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(SpeciesDetailViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
+        viewModel.loadSpecies(args.id)
 
+        viewModel.navigationAction.observe(viewLifecycleOwner, {
+            findNavController().navigate(it)
+        })
+        return binding.root
+    }
 }

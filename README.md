@@ -26,6 +26,7 @@ Following libraries are used uned the hood:
  - Implement Room persistance for local caching.
  - Implement NetworkBoundResource to achieve single source of truth.
  - Implement listing and detail pages for Planets, Species, Starships, Vehicles. The current architecture supports to easily implement the remaining pages.
+ - Implement Test cases
 
 ***MAY THE FORCE BE WITH YOU!***
 

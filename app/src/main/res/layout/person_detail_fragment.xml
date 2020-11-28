@@ -115,7 +115,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/textView7"
                     app:listDataChild="@{viewModel.filmsListDataChild}"
-                    app:listDataHeader="@{viewModel.listDataHeader}"
+                    app:listDataHeader="@{viewModel.filmsListDataHeader}"
                     app:onURLClick="@{viewModel.onURLClick()}" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>

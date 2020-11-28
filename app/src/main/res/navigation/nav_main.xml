@@ -73,24 +73,12 @@
         android:name="com.abc.swapiclient.presenter.detail.planet.PlanetDetailFragment"
         android:label="planet_detail_fragment"
         tools:layout="@layout/planet_detail_fragment">
-        <action
-            android:id="@+id/action_planetDetailFragment_self"
-            app:destination="@id/planetDetailFragment" />
         <argument
             android:name="id"
             app:argType="string" />
         <action
             android:id="@+id/action_planetDetailFragment_to_filmDetailFragment"
             app:destination="@id/filmDetailFragment" />
-        <action
-            android:id="@+id/action_planetDetailFragment_to_starshipDetailFragment"
-            app:destination="@id/starshipDetailFragment" />
-        <action
-            android:id="@+id/action_planetDetailFragment_to_speciesDetailFragment"
-            app:destination="@id/speciesDetailFragment" />
-        <action
-            android:id="@+id/action_planetDetailFragment_to_vehicleDetailFragment"
-            app:destination="@id/vehicleDetailFragment" />
         <action
             android:id="@+id/action_planetDetailFragment_to_personDetailFragment"
             app:destination="@id/personDetailFragment" />
@@ -101,20 +89,8 @@
         android:label="species_detail_fragment"
         tools:layout="@layout/species_detail_fragment">
         <action
-            android:id="@+id/action_speciesDetailFragment_self"
-            app:destination="@id/speciesDetailFragment" />
-        <action
-            android:id="@+id/action_speciesDetailFragment_to_vehicleDetailFragment"
-            app:destination="@id/vehicleDetailFragment" />
-        <action
-            android:id="@+id/action_speciesDetailFragment_to_starshipDetailFragment"
-            app:destination="@id/starshipDetailFragment" />
-        <action
             android:id="@+id/action_speciesDetailFragment_to_filmDetailFragment"
             app:destination="@id/filmDetailFragment" />
-        <action
-            android:id="@+id/action_speciesDetailFragment_to_planetDetailFragment"
-            app:destination="@id/planetDetailFragment" />
         <action
             android:id="@+id/action_speciesDetailFragment_to_personDetailFragment"
             app:destination="@id/personDetailFragment" />
@@ -128,26 +104,14 @@
         android:label="starship_detail_fragment"
         tools:layout="@layout/starship_detail_fragment">
         <action
-            android:id="@+id/action_starshipDetailFragment_self"
-            app:destination="@id/starshipDetailFragment" />
-        <action
             android:id="@+id/action_starshipDetailFragment_to_personDetailFragment"
             app:destination="@id/personDetailFragment" />
         <action
             android:id="@+id/action_starshipDetailFragment_to_filmDetailFragment"
             app:destination="@id/filmDetailFragment" />
-        <action
-            android:id="@+id/action_starshipDetailFragment_to_speciesDetailFragment"
-            app:destination="@id/speciesDetailFragment" />
-        <action
-            android:id="@+id/action_starshipDetailFragment_to_planetDetailFragment"
-            app:destination="@id/planetDetailFragment" />
         <argument
             android:name="id"
             app:argType="string" />
-        <action
-            android:id="@+id/action_starshipDetailFragment_to_searchFragment"
-            app:destination="@id/searchFragment" />
     </fragment>
     <fragment
         android:id="@+id/vehicleDetailFragment"
@@ -155,23 +119,11 @@
         android:label="vehicle_detail_fragment"
         tools:layout="@layout/vehicle_detail_fragment">
         <action
-            android:id="@+id/action_vehicleDetailFragment_self"
-            app:destination="@id/vehicleDetailFragment" />
-        <action
             android:id="@+id/action_vehicleDetailFragment_to_personDetailFragment"
             app:destination="@id/personDetailFragment" />
         <action
-            android:id="@+id/action_vehicleDetailFragment_to_starshipDetailFragment"
-            app:destination="@id/starshipDetailFragment" />
-        <action
-            android:id="@+id/action_vehicleDetailFragment_to_speciesDetailFragment"
-            app:destination="@id/speciesDetailFragment" />
-        <action
             android:id="@+id/action_vehicleDetailFragment_to_filmDetailFragment"
             app:destination="@id/filmDetailFragment" />
-        <action
-            android:id="@+id/action_vehicleDetailFragment_to_planetDetailFragment"
-            app:destination="@id/planetDetailFragment" />
         <argument
             android:name="id"
             app:argType="string" />
