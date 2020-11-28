@@ -6,6 +6,9 @@ import com.abc.swapiclient.domain.state.State
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
+/**
+ * UseCase for searching People based on a search query
+ */
 class SearchPeopleUseCase @Inject constructor(private val repository: RepositoryImpl){
 suspend operator fun invoke(query: String): Flow<State<List<Person>>> {
     return repository.searchPeople(query)

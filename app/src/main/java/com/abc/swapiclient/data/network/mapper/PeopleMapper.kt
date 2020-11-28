@@ -30,6 +30,10 @@ class PeopleMapper
         )
     }
 
+    /**
+     * Mapper for Planet Image URL
+     * Sample URL: https://starwars-visualguide.com/assets/img/characters/2.jpg
+     */
     private fun getImageURL(url: String): String {
         if (url.isEmpty()) {
             return ""

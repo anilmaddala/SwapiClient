@@ -26,6 +26,10 @@ class FilmsMapper @Inject constructor() : EntityMapper<Films, Film> {
         )
     }
 
+    /**
+     * Mapper for Film Image URL
+     * Sample URL: https://starwars-visualguide.com/assets/img/films/4.jpg
+     */
     private fun getImageURL(url: String): String {
         if (url.isEmpty()) {
             return ""

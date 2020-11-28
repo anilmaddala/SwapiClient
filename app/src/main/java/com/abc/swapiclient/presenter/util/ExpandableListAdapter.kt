@@ -8,18 +8,16 @@ import android.widget.BaseExpandableListAdapter
 import android.widget.TextView
 import com.abc.swapiclient.R
 
+/**
+ * Adapter to bind expandable list of URLs
+ */
 class ExpandableListAdapter internal constructor(
-    private val context: Context,
     private val titleList: List<String>,
-    var data: HashMap<String, List<String>>
+    var data: HashMap<String, List<String>>,
+    val onURLClick: (String) -> Unit
 ) : BaseExpandableListAdapter() {
 
     var dataList = data
-
-    fun getAdvancedOptionsState(): HashMap<String, List<String>> {
-        return dataList
-    }
-
 
     override fun getChild(listPosition: Int, expandedListPosition: Int): Any {
         return dataList[titleList[listPosition]]!![expandedListPosition]
@@ -40,11 +38,12 @@ class ExpandableListAdapter internal constructor(
         var convertView = convertView
         if (convertView == null) {
             val layoutInflater =
-                context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+                parent.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
             convertView = layoutInflater.inflate(R.layout.expandable_list_item, null)
         }
         val expandedListTextView = convertView!!.findViewById<TextView>(R.id.expandedListItem)
         expandedListTextView.text = childText
+        expandedListTextView.setOnClickListener { onURLClick(childText) }
 
         return convertView
     }
@@ -75,7 +74,7 @@ class ExpandableListAdapter internal constructor(
         val listTitle = getGroup(listPosition) as String
         if (convertView == null) {
             val layoutInflater =
-                context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+                parent.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
             convertView = layoutInflater.inflate(R.layout.expandable_list_group, null)
         }
         val listTitleTextView = convertView!!.findViewById<TextView>(R.id.listTitle)

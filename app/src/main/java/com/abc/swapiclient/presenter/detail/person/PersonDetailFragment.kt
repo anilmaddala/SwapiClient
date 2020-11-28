@@ -23,9 +23,6 @@ class PersonDetailFragment : Fragment() {
 
     private val args: PersonDetailFragmentArgs by navArgs()
 
-    lateinit var listDataHeader: List<String>
-    lateinit var listDataChild: HashMap<String, List<String>>
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -40,40 +37,6 @@ class PersonDetailFragment : Fragment() {
         viewModel.navigationAction.observe(viewLifecycleOwner, {
             findNavController().navigate(it)
         })
-
-        prepareListData()
-        val adapter = ExpandableListAdapter(requireContext(), listDataHeader, listDataChild)
-        binding.expandableListView.setAdapter(adapter)
-
         return binding.root
-    }
-
-    private fun prepareListData() {
-        listDataHeader = ArrayList()
-        listDataChild = HashMap()
-
-        // Adding child data
-        (listDataHeader as ArrayList<String>).add("Films")
-        (listDataHeader as ArrayList<String>).add("Vehicles")
-        (listDataHeader as ArrayList<String>).add("Starships")
-
-        // Adding child data
-        val films: MutableList<String> = ArrayList()
-        films.add("http://swapi.dev/api/films/1/")
-        films.add("http://swapi.dev/api/films/2/")
-        films.add("http://swapi.dev/api/films/3/")
-        films.add("http://swapi.dev/api/films/6/")
-
-        val vehicles: MutableList<String> = ArrayList()
-        vehicles.add("http://swapi.dev/api/vehicles/14/")
-        vehicles.add("http://swapi.dev/api/vehicles/30/")
-
-        val starships: MutableList<String> = ArrayList()
-        starships.add("http://swapi.dev/api/starships/12/")
-        starships.add("http://swapi.dev/api/starships/22/")
-
-        listDataChild[listDataHeader[0]] = films // Header, Child data
-        listDataChild[listDataHeader[1]] = vehicles
-        listDataChild[listDataHeader[2]] = starships
     }
 }

@@ -2,4 +2,6 @@
     <string name="app_name">Swapi Client</string>
     <string name="searchHint">Search Star Wars</string>
     <string name="name">Name:</string>
+    <string name="population">Population:</string>
+    <string name="gravity">Gravity:</string>
 </resources>

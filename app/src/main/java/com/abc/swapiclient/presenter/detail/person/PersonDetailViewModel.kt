@@ -1,6 +1,5 @@
 package com.abc.swapiclient.presenter.detail.person
 
-import android.view.View
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import androidx.navigation.NavDirections
@@ -35,11 +34,52 @@ class PersonDetailViewModel @ViewModelInject constructor(private val getPersonUs
     val person: LiveData<Person>
         get() = _personResponse.map { if (it is State.Success) it.data else Person() }
 
+    val listDataHeader: LiveData<List<String>>
+        get() {
+            return _personResponse.map {
+                if (it is State.Success) {
+                    val list = ArrayList<String>()
+                    if (it.data.films?.isNotEmpty() == true) {
+                        list.add("Films:")
+                    }
+                    list
+                } else {
+                    ArrayList()
+                }
+            }
+        }
+
+    val filmsListDataChild: LiveData<HashMap<String, List<String>>>
+        get() {
+            return _personResponse.map {
+                if (it is State.Success) {
+                    val map = HashMap<String, List<String>>()
+                    val list = ArrayList<String>()
+                    if (it.data.films?.isNotEmpty() == true) {
+                        it.data.films.forEach { url ->
+                            list.add(url)
+                        }
+                        map["Films:"] = list
+                    }
+                    map
+                } else {
+                    HashMap()
+                }
+            }
+        }
+
+    fun onURLClick(): (url: String) -> Unit {
+        return {
+            setNextNavigation(it)
+        }
+    }
+
+
     /**
      * Load StarWars Character
      */
     fun loadPerson(id: String) {
-        viewModelScope.launch() {
+        viewModelScope.launch {
             getPersonUseCase.invoke(id).collect {
                 _personResponse.value = it
             }
@@ -51,12 +91,10 @@ class PersonDetailViewModel @ViewModelInject constructor(private val getPersonUs
      * Process URL and navigate to appropriate fragment destination
      * Sample URL: 'http://swapi.dev/api/planets/1/'
      */
-    fun setNextNavigation() {
-        val url = "http://swapi.dev/api/films/4/"
+    fun setNextNavigation(url: String) {
         val splits = url.split('/')
         val id = splits[splits.lastIndex - 1]
-        val destination = splits[splits.lastIndex - 2]
-        when (destination) {
+        when (splits[splits.lastIndex - 2]) {
             FILMS -> {
                 _navigationAction.postValue(
                     PersonDetailFragmentDirections.actionPersonDetailFragmentToFilmDetailFragment(

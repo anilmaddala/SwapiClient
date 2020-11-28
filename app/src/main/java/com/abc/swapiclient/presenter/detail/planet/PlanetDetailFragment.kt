@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.abc.swapiclient.R
+import dagger.hilt.android.AndroidEntryPoint
 
 class PlanetDetailFragment : Fragment() {
 

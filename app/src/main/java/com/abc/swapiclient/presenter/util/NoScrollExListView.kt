@@ -4,7 +4,9 @@ import android.content.Context
 import android.util.AttributeSet
 import android.widget.ExpandableListView
 
-
+/**
+ * ExpandableListview with scroll disabled to allow for nested scrolling
+ */
 class NoScrollExListView : ExpandableListView {
     constructor(context: Context?) : super(context) {}
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {}
