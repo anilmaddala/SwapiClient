@@ -10,4 +10,7 @@
     <string name="producer">Producer:</string>
     <string name="average_lifespan">Average Lifespan:</string>
     <string name="language">Language:</string>
+    <string name="cost">cost:</string>
+    <string name="hyperdrive_rating">hyperdrive rating:</string>
+    <string name="model">model:</string>
 </resources>
