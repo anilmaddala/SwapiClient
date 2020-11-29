@@ -6,6 +6,7 @@ import androidx.navigation.NavDirections
 import com.abc.swapiclient.domain.models.Species
 import com.abc.swapiclient.domain.state.State
 import com.abc.swapiclient.presenter.util.SingleLiveEvent
+import com.abc.swapiclient.presenter.util.buildURLMap
 import com.abc.swapiclient.usecases.GetSpeciesUseCase
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -30,38 +31,14 @@ class SpeciesDetailViewModel @ViewModelInject constructor(private val getSpecies
     val species: LiveData<Species>
         get() = _speciesResponse.map { if (it is State.Success) it.data else Species() }
 
-    val listDataHeader: LiveData<List<String>>
-        get() {
-            return _speciesResponse.map {
-                if (it is State.Success) {
-                    val list = ArrayList<String>()
-                    if (it.data.films?.isNotEmpty() == true) {
-                        list.add("Films:")
-                    }
-                    list
-                } else {
-                    ArrayList()
-                }
-            }
-        }
-
     val filmsListDataChild: LiveData<HashMap<String, List<String>>>
         get() {
-            return _speciesResponse.map {
-                if (it is State.Success) {
-                    val map = HashMap<String, List<String>>()
-                    val list = ArrayList<String>()
-                    if (it.data.films?.isNotEmpty() == true) {
-                        it.data.films.forEach { url ->
-                            list.add(url)
-                        }
-                        map["Films:"] = list
-                    }
-                    map
-                } else {
-                    HashMap()
-                }
-            }
+            return buildURLMap("films:", "films", _speciesResponse)
+        }
+
+    val peopleListDataChild: LiveData<HashMap<String, List<String>>>
+        get() {
+            return buildURLMap("people:", "people", _speciesResponse)
         }
 
     fun onURLClick(): (url: String) -> Unit {
@@ -85,7 +62,7 @@ class SpeciesDetailViewModel @ViewModelInject constructor(private val getSpecies
     // TODO: ViewModel shouldn't have any view related components. Move to fragment or activity
     /**
      * Process URL and navigate to appropriate fragment destination
-     * Sample URL: 'http://swapi.dev/api/speciess/1/'
+     * Sample URL: 'http://swapi.dev/api/species/1/'
      */
     private fun setNextNavigation(url: String) {
         val splits = url.split('/')

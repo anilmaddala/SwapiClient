@@ -35,14 +35,13 @@ fun searchResults(view: RecyclerView, personList: List<Person>?, onSearchResultC
 /**
  *  Binding adapter for expandable list of URLs
  */
-@BindingAdapter("listDataHeader", "listDataChild","onURLClick")
+@BindingAdapter("listDataChild","onURLClick")
 fun expandableAdapter(
     view: NoScrollExListView,
-    listDataHeader: List<String>,
     listDataChild: HashMap<String, List<String>>,
     onURLClick: (String) -> Unit
 ) {
-    view.setAdapter(ExpandableListAdapter(listDataHeader, listDataChild, onURLClick))
+    view.setAdapter(ExpandableListAdapter(listDataChild, onURLClick))
 }
 
 /**

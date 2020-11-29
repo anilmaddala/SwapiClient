@@ -104,7 +104,7 @@
                     app:layout_constraintTop_toTopOf="@+id/textView5" />
 
                 <com.abc.swapiclient.presenter.util.NoScrollExListView
-                    android:id="@+id/expandableListView"
+                    android:id="@+id/expandableListViewCharacters"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_marginTop="20dp"
@@ -113,8 +113,20 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/textView7"
-                    app:listDataChild="@{viewModel.listDataChild}"
-                    app:listDataHeader="@{viewModel.listDataHeader}"
+                    app:listDataChild="@{viewModel.characterListDataChild}"
+                    app:onURLClick="@{viewModel.onURLClick()}" />
+
+                <com.abc.swapiclient.presenter.util.NoScrollExListView
+                    android:id="@+id/expandableListViewPlanets"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="20dp"
+                    android:groupIndicator="@null"
+                    android:nestedScrollingEnabled="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/expandableListViewCharacters"
+                    app:listDataChild="@{viewModel.planetsListDataChild}"
                     app:onURLClick="@{viewModel.onURLClick()}" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>

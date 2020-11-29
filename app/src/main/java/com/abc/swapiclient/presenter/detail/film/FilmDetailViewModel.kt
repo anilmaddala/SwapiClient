@@ -6,6 +6,7 @@ import androidx.navigation.NavDirections
 import com.abc.swapiclient.domain.models.Film
 import com.abc.swapiclient.domain.state.State
 import com.abc.swapiclient.presenter.util.SingleLiveEvent
+import com.abc.swapiclient.presenter.util.buildURLMap
 import com.abc.swapiclient.usecases.GetFilmUseCase
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -34,38 +35,14 @@ class FilmDetailViewModel @ViewModelInject constructor(private val getFilmUseCas
     val film: LiveData<Film>
         get() = _filmResponse.map { if (it is State.Success) it.data else Film() }
 
-    val listDataHeader: LiveData<List<String>>
+    val characterListDataChild: LiveData<HashMap<String, List<String>>>
         get() {
-            return _filmResponse.map {
-                if (it is State.Success) {
-                    val list = ArrayList<String>()
-                    if (it.data.characters?.isNotEmpty() == true) {
-                        list.add("Characters:")
-                    }
-                    list
-                } else {
-                    ArrayList()
-                }
-            }
+            return buildURLMap("characters:", "characters", _filmResponse)
         }
 
-    val listDataChild: LiveData<HashMap<String, List<String>>>
+    val planetsListDataChild: LiveData<HashMap<String, List<String>>>
         get() {
-            return _filmResponse.map {
-                if (it is State.Success) {
-                    val map = HashMap<String, List<String>>()
-                    val list = ArrayList<String>()
-                    if (it.data.characters?.isNotEmpty() == true) {
-                        it.data.characters.forEach { url ->
-                            list.add(url)
-                        }
-                        map["Characters:"] = list
-                    }
-                    map
-                } else {
-                    HashMap()
-                }
-            }
+            return buildURLMap("planets:", "planets", _filmResponse)
         }
 
     fun onURLClick(): (url: String) -> Unit {

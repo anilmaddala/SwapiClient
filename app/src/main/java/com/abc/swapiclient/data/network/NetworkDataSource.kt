@@ -20,14 +20,14 @@ interface NetworkDataSource {
     suspend fun getPeople(@Path("id") id: String): People
 
     @GET("planets/{id}")
-    suspend fun getPlanet(name: String): Planets
+    suspend fun getPlanet(@Path("id") id: String): Planets
 
     @GET("species/{id}")
-    suspend fun getSpecies(name: String): Species
+    suspend fun getSpecies(@Path("id") id: String): Species
 
     @GET("starships/{id}")
-    suspend fun getStarship(name: String): Starships
+    suspend fun getStarship(@Path("id") id: String): Starships
 
     @GET("vehicles/{id}")
-    suspend fun getVehicle(name: String): Vehicles
+    suspend fun getVehicle(@Path("id") id: String): Vehicles
 }

@@ -8,4 +8,6 @@
     <string name="mass">Mass:</string>
     <string name="director">Director:</string>
     <string name="producer">Producer:</string>
+    <string name="average_lifespan">Average Lifespan:</string>
+    <string name="language">Language:</string>
 </resources>

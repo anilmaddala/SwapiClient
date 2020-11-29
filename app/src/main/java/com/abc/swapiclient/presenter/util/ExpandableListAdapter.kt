@@ -13,12 +13,13 @@ import com.abc.swapiclient.R
  * Adapter to bind expandable list of URLs
  */
 class ExpandableListAdapter internal constructor(
-    private val titleList: List<String>,
     var data: HashMap<String, List<String>>,
     val onURLClick: (String) -> Unit
 ) : BaseExpandableListAdapter() {
 
     private var dataList = data
+
+    private val titleList = data.keys.toList()
 
     override fun getChild(listPosition: Int, expandedListPosition: Int): Any {
         return dataList[titleList[listPosition]]!![expandedListPosition]

@@ -6,6 +6,7 @@ import androidx.navigation.NavDirections
 import com.abc.swapiclient.domain.models.Person
 import com.abc.swapiclient.domain.state.State
 import com.abc.swapiclient.presenter.util.SingleLiveEvent
+import com.abc.swapiclient.presenter.util.buildURLMap
 import com.abc.swapiclient.usecases.GetPersonUseCase
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -34,38 +35,24 @@ class PersonDetailViewModel @ViewModelInject constructor(private val getPersonUs
     val person: LiveData<Person>
         get() = _personResponse.map { if (it is State.Success) it.data else Person() }
 
-    val filmsListDataHeader: LiveData<List<String>>
-        get() {
-            return _personResponse.map {
-                if (it is State.Success) {
-                    val list = ArrayList<String>()
-                    if (it.data.films?.isNotEmpty() == true) {
-                        list.add("Films:")
-                    }
-                    list
-                } else {
-                    ArrayList()
-                }
-            }
-        }
-
     val filmsListDataChild: LiveData<HashMap<String, List<String>>>
         get() {
-            return _personResponse.map {
-                if (it is State.Success) {
-                    val map = HashMap<String, List<String>>()
-                    val list = ArrayList<String>()
-                    if (it.data.films?.isNotEmpty() == true) {
-                        it.data.films.forEach { url ->
-                            list.add(url)
-                        }
-                        map["Films:"] = list
-                    }
-                    map
-                } else {
-                    HashMap()
-                }
-            }
+            return buildURLMap("films:", "films", _personResponse)
+        }
+
+    val speciesListDataChild: LiveData<HashMap<String, List<String>>>
+        get() {
+            return buildURLMap("species:", "species", _personResponse)
+        }
+
+    val starshipsListDataChild: LiveData<HashMap<String, List<String>>>
+        get() {
+            return buildURLMap("starships:", "starships", _personResponse)
+        }
+
+    val vehiclesListDataChild: LiveData<HashMap<String, List<String>>>
+        get() {
+            return buildURLMap("vehicles:", "vehicles", _personResponse)
         }
 
     fun onURLClick(): (url: String) -> Unit {

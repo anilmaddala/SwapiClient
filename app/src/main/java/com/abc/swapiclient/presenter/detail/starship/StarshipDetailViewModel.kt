@@ -6,6 +6,7 @@ import androidx.navigation.NavDirections
 import com.abc.swapiclient.domain.models.Starship
 import com.abc.swapiclient.domain.state.State
 import com.abc.swapiclient.presenter.util.SingleLiveEvent
+import com.abc.swapiclient.presenter.util.buildURLMap
 import com.abc.swapiclient.usecases.GetStarshipUseCase
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -15,7 +16,7 @@ class StarshipDetailViewModel @ViewModelInject constructor(private val getStarsh
 
     companion object {
         private const val FILMS = "films"
-        private const val PILOTS = "pilots"
+        private const val PEOPLE = "people"
     }
 
     private val _navigationAction = SingleLiveEvent<NavDirections>()
@@ -30,38 +31,14 @@ class StarshipDetailViewModel @ViewModelInject constructor(private val getStarsh
     val starship: LiveData<Starship>
         get() = _starshipResponse.map { if (it is State.Success) it.data else Starship() }
 
-    val listDataHeader: LiveData<List<String>>
-        get() {
-            return _starshipResponse.map {
-                if (it is State.Success) {
-                    val list = ArrayList<String>()
-                    if (it.data.films?.isNotEmpty() == true) {
-                        list.add("Films:")
-                    }
-                    list
-                } else {
-                    ArrayList()
-                }
-            }
-        }
-
     val filmsListDataChild: LiveData<HashMap<String, List<String>>>
         get() {
-            return _starshipResponse.map {
-                if (it is State.Success) {
-                    val map = HashMap<String, List<String>>()
-                    val list = ArrayList<String>()
-                    if (it.data.films?.isNotEmpty() == true) {
-                        it.data.films.forEach { url ->
-                            list.add(url)
-                        }
-                        map["Films:"] = list
-                    }
-                    map
-                } else {
-                    HashMap()
-                }
-            }
+            return buildURLMap("films:", "films", _starshipResponse)
+        }
+
+    val pilotsListDataChild: LiveData<HashMap<String, List<String>>>
+        get() {
+            return buildURLMap("pilots:", "pilots", _starshipResponse)
         }
 
     fun onURLClick(): (url: String) -> Unit {
@@ -98,7 +75,7 @@ class StarshipDetailViewModel @ViewModelInject constructor(private val getStarsh
                     )
                 )
             }
-            PILOTS -> {
+            PEOPLE -> {
                 _navigationAction.postValue(
                     StarshipDetailFragmentDirections.actionStarshipDetailFragmentToPersonDetailFragment(
                         id
