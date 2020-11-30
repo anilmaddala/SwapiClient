@@ -21,10 +21,12 @@ class RepositoryImpl
     private val vehiclesMapper: VehiclesMapper,
     private val searchResponseMapper: SearchResponseMapper
 ) : Repository {
-    override suspend fun searchPeople(searchQuery: String, pageIndex: Int): Flow<State<PersonSearchResult>> {
+    override suspend fun searchPeople(
+        searchQuery: String,
+        pageIndex: Int
+    ): Flow<State<PersonSearchResult>> {
         return flow {
             try {
-                emit(State.Loading)
                 val data = networkDataSource.searchPeople(searchQuery, pageIndex)
                 emit(State.Success(searchResponseMapper.mapFromEntity(data)))
             } catch (e: Exception) {
@@ -36,7 +38,6 @@ class RepositoryImpl
     override suspend fun getFilm(id: String): Flow<State<Film>> {
         return flow {
             try {
-                emit(State.Loading)
                 val data = networkDataSource.getFilm(id)
                 emit(State.Success(filmsMapper.mapFromEntity(data)))
             } catch (e: Exception) {
@@ -48,7 +49,6 @@ class RepositoryImpl
     override suspend fun getPerson(id: String): Flow<State<Person>> {
         return flow {
             try {
-                emit(State.Loading)
                 val data = networkDataSource.getPeople(id)
                 emit(State.Success(peopleMapper.mapFromEntity(data)))
             } catch (e: Exception) {
@@ -60,7 +60,6 @@ class RepositoryImpl
     override suspend fun getPlanet(id: String): Flow<State<Planet>> {
         return flow {
             try {
-                emit(State.Loading)
                 val data = networkDataSource.getPlanet(id)
                 emit(State.Success(planetsMapper.mapFromEntity(data)))
             } catch (e: Exception) {
@@ -72,7 +71,6 @@ class RepositoryImpl
     override suspend fun getSpecies(id: String): Flow<State<Species>> {
         return flow {
             try {
-                emit(State.Loading)
                 val data = networkDataSource.getSpecies(id)
                 emit(State.Success(speciesMapper.mapFromEntity(data)))
             } catch (e: Exception) {
@@ -84,7 +82,6 @@ class RepositoryImpl
     override suspend fun getStarship(id: String): Flow<State<Starship>> {
         return flow {
             try {
-                emit(State.Loading)
                 val data = networkDataSource.getStarship(id)
                 emit(State.Success(starshipsMapper.mapFromEntity(data)))
             } catch (e: Exception) {
@@ -96,7 +93,6 @@ class RepositoryImpl
     override suspend fun getVehicle(id: String): Flow<State<Vehicle>> {
         return flow {
             try {
-                emit(State.Loading)
                 val data = networkDataSource.getVehicle(id)
                 emit(State.Success(vehiclesMapper.mapFromEntity(data)))
             } catch (e: Exception) {
