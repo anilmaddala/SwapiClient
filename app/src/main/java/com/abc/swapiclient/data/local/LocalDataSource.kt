@@ -4,17 +4,17 @@ import com.abc.swapiclient.domain.models.*
 
 interface LocalDataSource {
 
-    suspend fun getFilm(name: String)
+    suspend fun getFilm(id: String): Film
 
-    suspend fun getPerson(name: String)
+    suspend fun getPerson(id: String): Person
 
-    suspend fun getPlanet(name: String)
+    suspend fun getPlanet(id: String): Planet
 
-    suspend fun getSpecies(name: String)
+    suspend fun getSpecies(id: String): Species
 
-    suspend fun getStarship(name: String)
+    suspend fun getStarship(id: String): Starship
 
-    suspend fun getVehicle(name: String)
+    suspend fun getVehicle(id: String): Vehicle
 
     suspend fun addPerson(people: Person)
 
