@@ -11,9 +11,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.abc.swapiclient.R
 import com.abc.swapiclient.databinding.PersonDetailFragmentBinding
-import com.abc.swapiclient.presenter.util.ExpandableListAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
+/**
+ * Detail Fragment for Person
+ */
 @AndroidEntryPoint
 class PersonDetailFragment : Fragment() {
 

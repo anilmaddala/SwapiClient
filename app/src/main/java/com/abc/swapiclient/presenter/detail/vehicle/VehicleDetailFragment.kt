@@ -13,6 +13,9 @@ import com.abc.swapiclient.R
 import com.abc.swapiclient.databinding.VehicleDetailFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
 
+/**
+ * Detail Fragment for Vehicles
+ */
 @AndroidEntryPoint
 class VehicleDetailFragment : Fragment() {
 

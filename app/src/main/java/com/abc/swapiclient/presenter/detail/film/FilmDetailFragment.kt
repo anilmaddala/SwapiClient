@@ -13,6 +13,9 @@ import com.abc.swapiclient.R
 import com.abc.swapiclient.databinding.FilmDetailFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
 
+/**
+ * Detail Fragment for Film
+ */
 @AndroidEntryPoint
 class FilmDetailFragment : Fragment() {
 

@@ -68,7 +68,7 @@ class FilmDetailViewModel @ViewModelInject constructor(private val getFilmUseCas
      * Process URL and navigate to appropriate fragment destination
      * Sample URL: 'http://swapi.dev/api/planets/1/'
      */
-    fun setNextNavigation(url: String) {
+    private fun setNextNavigation(url: String) {
         val splits = url.split('/')
         val id = splits[splits.lastIndex - 1]
         when (splits[splits.lastIndex - 2]) {

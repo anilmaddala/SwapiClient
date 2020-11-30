@@ -1,12 +1,11 @@
 package com.abc.swapiclient.presenter.detail.planet
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -14,6 +13,9 @@ import com.abc.swapiclient.R
 import com.abc.swapiclient.databinding.PlanetDetailFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
 
+/**
+ * Detail Fragment for Planet
+ */
 @AndroidEntryPoint
 class PlanetDetailFragment : Fragment() {
 
