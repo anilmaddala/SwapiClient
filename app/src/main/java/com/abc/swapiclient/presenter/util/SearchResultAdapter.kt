@@ -8,6 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.abc.swapiclient.databinding.SearchResultItemBinding
 import com.abc.swapiclient.domain.models.Person
 
+/**
+ * Adapter for Search results
+ */
 class SearchResultAdapter(val onSearchResultClick: (String) -> Unit) : RecyclerView.Adapter<SearchResultViewHolder>() {
 
     private val diffCallback = object : DiffUtil.ItemCallback<Person>(){
@@ -43,6 +46,9 @@ class SearchResultAdapter(val onSearchResultClick: (String) -> Unit) : RecyclerV
 
 }
 
+/**
+ * View Holder for Search result
+ */
 class SearchResultViewHolder(val binding: SearchResultItemBinding) :
     RecyclerView.ViewHolder(binding.root) {
 

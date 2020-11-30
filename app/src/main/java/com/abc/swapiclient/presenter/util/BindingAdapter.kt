@@ -10,16 +10,17 @@ import com.abc.swapiclient.domain.models.Person
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 
+/**
+ *  Binding adapter for setting visibility
+ */
 @BindingAdapter("visibleOrGone")
 fun View.setVisibleOrGone(show: Boolean) {
     visibility = if (show) VISIBLE else GONE
 }
 
-@BindingAdapter("visible")
-fun View.setVisible(show: Boolean) {
-    visibility = if (show) VISIBLE else INVISIBLE
-}
-
+/**
+ *  Binding adapter for Search result Recyclerview
+ */
 @BindingAdapter("searchResults", "onSearchResultClick")
 fun searchResults(view: RecyclerView, personList: List<Person>?, onSearchResultClick: (String) -> Unit) {
     view.adapter = SearchResultAdapter(onSearchResultClick)

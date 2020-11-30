@@ -7,6 +7,9 @@ import com.abc.swapiclient.domain.state.State
 import kotlin.reflect.KProperty1
 
 
+/**
+ * Helper function to build URL Map to be used by ExpandableListView
+ */
 fun <T> buildURLMap(
     headerText: String,
     listPropertyName: String,
@@ -30,6 +33,9 @@ fun <T> buildURLMap(
     }
 }
 
+/**
+ * Get property by name as a String
+ */
 // Source: https://stackoverflow.com/questions/35525122/kotlin-data-class-how-to-read-the-value-of-property-if-i-dont-know-its-name-at
 @Suppress("UNCHECKED_CAST")
 fun <R> readInstanceProperty(instance: Any, propertyName: String): R {
