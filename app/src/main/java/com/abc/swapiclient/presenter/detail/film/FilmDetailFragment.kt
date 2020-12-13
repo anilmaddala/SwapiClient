@@ -8,7 +8,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.abc.swapiclient.R
 import com.abc.swapiclient.databinding.FilmDetailFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,18 +22,14 @@ class FilmDetailFragment : Fragment() {
 
     private lateinit var binding: FilmDetailFragmentBinding
 
-    private val args: FilmDetailFragmentArgs by navArgs()
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding =
             DataBindingUtil.inflate(inflater, R.layout.film_detail_fragment, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
-
-        viewModel.loadFilm(args.id)
 
         viewModel.navigationAction.observe(viewLifecycleOwner, {
             findNavController().navigate(it)

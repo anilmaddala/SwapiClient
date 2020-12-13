@@ -1,5 +1,6 @@
 package com.abc.swapiclient.presenter.detail.film
 
+import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import androidx.navigation.NavDirections
@@ -8,10 +9,14 @@ import com.abc.swapiclient.domain.state.State
 import com.abc.swapiclient.presenter.util.SingleLiveEvent
 import com.abc.swapiclient.presenter.util.buildURLMap
 import com.abc.swapiclient.usecases.GetFilmUseCase
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-class FilmDetailViewModel @ViewModelInject constructor(private val getFilmUseCase: GetFilmUseCase) :
+class FilmDetailViewModel @ViewModelInject constructor(
+    private val getFilmUseCase: GetFilmUseCase,
+    @Assisted private val savedStateHandle: SavedStateHandle
+) :
     ViewModel() {
 
     companion object {
@@ -55,8 +60,8 @@ class FilmDetailViewModel @ViewModelInject constructor(private val getFilmUseCas
     /**
      * Load StarWars Character
      */
-    fun loadFilm(id: String) {
-        viewModelScope.launch {
+    private fun loadFilm(id: String) {
+        viewModelScope.launch(Dispatchers.IO) {
             getFilmUseCase.invoke(id).collect {
                 _filmResponse.value = it
             }
@@ -115,5 +120,9 @@ class FilmDetailViewModel @ViewModelInject constructor(private val getFilmUseCas
                 )
             }
         }
+    }
+
+    init {
+        loadFilm(savedStateHandle.get<String>("id")!!)
     }
 }
